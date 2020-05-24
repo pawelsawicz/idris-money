@@ -1,4 +1,4 @@
-module Money
+module Money.Core
 
 import Money.Currency
 %access public export

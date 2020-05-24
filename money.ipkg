@@ -1,4 +1,5 @@
 package money
 
 modules = Money
+	, Money.Core
 	, Money.Currency
