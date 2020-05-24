@@ -1,6 +1,7 @@
 module Money
 
 import Money.Currency
+%access public export
 
 data Money : Currency -> Type where
     MkMoney : Double -> (currency : Currency) -> Money currency
