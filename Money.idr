@@ -17,18 +17,24 @@ Prelude.Interfaces.Eq (Money c) where
 Ord (Money c) where 
   compare (MkMoney x c) (MkMoney y c) = compare x y 
 
-addMoney : Money c -> Money c -> Money c
-addMoney (MkMoney x c) (MkMoney y c) = let val = x + y in
-                                           MkMoney val c
+interface Monetary ty where
+  (+) : ty -> ty -> ty
+  (*) : ty -> ty -> ty
+  negate : ty -> ty
+  (-) : ty -> ty -> ty
+  abs : ty -> ty
+  (/) : ty -> ty -> ty
 
-multiMoney : Money c -> Money c -> Money c
-multiMoney (MkMoney x c) (MkMoney y c) = let val = x * y in
-                                             MkMoney val c
-
-subsMoney : Money c -> Money c -> Money c
-subsMoney (MkMoney x c) (MkMoney y c) = let val = x - y in
-                                            MkMoney val c
-
-divMoney : Money c -> Money c -> Money c
-divMoney (MkMoney x c) (MkMoney y c) = let val = x / y in
-                                           MkMoney val c
+Monetary (Money c) where
+  (+) (MkMoney x c) (MkMoney y c) = let val = x + y in
+                                        MkMoney val c
+  (*) (MkMoney x c) (MkMoney y c) = let val = x * y in
+                                        MkMoney val c
+  negate (MkMoney x c) = let val = negate x in
+                             (MkMoney val c)
+  (-) (MkMoney x c) (MkMoney y c) = let val = x - y in
+                                        MkMoney val c
+  abs (MkMoney x c) = let val = abs x in
+                          MkMoney val c
+  (/) (MkMoney x c) (MkMoney y c) = let val = x / y in
+                                        MkMoney val c
