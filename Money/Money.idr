@@ -1,9 +1,6 @@
 module Money
 
-data Currency = 
-  PLN | 
-  USD | 
-  GBP
+import Money.Currency
 
 data Money : Currency -> Type where
     MkMoney : Double -> (currency : Currency) -> Money currency
